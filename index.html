@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Message Encoder/Decoder</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>🔐 Secret Message Tool</h1>
+
+        <select id="action">
+            <option value="encode">Encode Message</option>
+            <option value="decode">Decode Message</option>
+        </select>
+
+        <textarea
+            id="message"
+            rows="4"
+            placeholder="Enter your message"
+        ></textarea>
+
+        <input
+            type="number"
+            id="key"
+            placeholder="Enter secret key (1-100)"
+            min="1"
+            max="100"
+        >
+
+        <button onclick="processMessage()">
+            Submit
+        </button>
+
+        <div class="result" id="result">
+            Result will appear here...
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
