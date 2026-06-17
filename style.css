@@ -1,449 +1,374 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-/* ==========================================
-RESET
-========================================== */
+/* ==========================
+   RESET
+========================== */
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  }
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 :root {
---bg: #020617;
---card: rgba(15, 23, 42, 0.8);
+    --bg: #020617;
+    --card: rgba(15, 23, 42, 0.82);
 
---primary: #3b82f6;
---secondary: #06b6d4;
+    --primary: #3b82f6;
+    --secondary: #06b6d4;
 
---text: #cbddef;
---muted: #86a3cc;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
 
---border: rgba(255, 255, 255, 0.08);
---success: #22c55e;
+    --border: rgba(255, 255, 255, 0.08);
 
---radius: 24px;
+    --success: #22c55e;
 
-
+    --radius: 24px;
 }
 
-/* ==========================================
-BODY
-========================================== */
+/* ==========================
+   BODY (MOBILE SAFE)
+========================== */
 
 body {
-min-height: 100vh;
+    min-height: 100vh;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-display: flex;
-justify-content: center;
-align-items: center;
+    padding: 20px;
 
-padding: 20px;
+    font-family: 'Inter', sans-serif;
 
-font-family: 'Inter', sans-serif;
+    position: relative;
 
-overflow: hidden;
-position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
 
-background:
-    linear-gradient(
-        rgba(2, 6, 23, 0.88),
-        rgba(2, 6, 23, 0.88)
-    ),
-    url("https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=1600&q=80");
+    background:
+        linear-gradient(
+            rgba(2, 6, 23, 0.9),
+            rgba(2, 6, 23, 0.9)
+        ),
+        url("https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=1600&q=80");
 
-background-size: cover;
-background-position: center;
-
-
+    background-size: cover;
+    background-position: center;
 }
 
-/* ==========================================
-GRID OVERLAY
-========================================== */
+/* ==========================
+   GRID BACKGROUND
+========================== */
 
 body::before {
-content: "";
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
 
+    background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
 
-position: absolute;
-inset: 0;
+    background-size: 50px 50px;
 
-background-image:
-    linear-gradient(
-        rgba(255, 255, 255, 0.03) 1px,
-        transparent 1px
-    ),
-    linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0.03) 1px,
-        transparent 1px
-    );
-
-background-size: 50px 50px;
-
-animation: gridMove 20s linear infinite;
-
-
+    animation: gridMove 25s linear infinite;
 }
 
 @keyframes gridMove {
-from {
-transform: translateY(0);
+    from { transform: translateY(0); }
+    to { transform: translateY(50px); }
 }
 
-to {
-    transform: translateY(50px);
-}
-
-
-}
-
-/* ==========================================
-GLOW EFFECT
-========================================== */
+/* ==========================
+   GLOW EFFECT
+========================== */
 
 body::after {
-content: "";
+    content: "";
+    position: fixed;
+    inset: auto;
 
+    width: 500px;
+    height: 500px;
 
-position: absolute;
+    top: -180px;
+    left: -120px;
 
-width: 500px;
-height: 500px;
+    border-radius: 50%;
 
-top: -200px;
-left: -150px;
-
-border-radius: 50%;
-
-background:
-    radial-gradient(
+    background: radial-gradient(
         circle,
-        rgba(59, 130, 246, 0.25),
-        transparent
+        rgba(59,130,246,0.25),
+        transparent 70%
     );
 
-filter: blur(80px);
+    filter: blur(90px);
 
-animation: floatGlow 8s ease-in-out infinite;
+    animation: floatGlow 10s ease-in-out infinite;
 
-
+    z-index: -1;
 }
 
 @keyframes floatGlow {
-0%,
-100% {
-transform: translateY(0);
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(40px); }
 }
 
-50% {
-    transform: translateY(40px);
-}
-
-}
-
-/* ==========================================
-MAIN CONTAINER
-========================================== */
+/* ==========================
+   CONTAINER (GLASS UI)
+========================== */
 
 .container {
-width: 100%;
-max-width: 520px;
+    width: 100%;
+    max-width: 520px;
 
+    padding: 35px;
 
-position: relative;
-z-index: 10;
+    background: var(--card);
 
-padding: 35px;
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
 
-background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
 
-backdrop-filter: blur(20px);
--webkit-backdrop-filter: blur(20px);
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.45);
 
-border: 1px solid var(--border);
-border-radius: var(--radius);
+    position: relative;
+    z-index: 10;
 
-box-shadow:
-    0 20px 50px rgba(0, 0, 0, 0.4);
-
-animation: fadeIn 0.8s ease;
-
-
+    animation: fadeIn 0.7s ease;
 }
 
 @keyframes fadeIn {
-from {
-opacity: 0;
-transform: translateY(30px);
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-
-to {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-
-}
-
-/* ==========================================
-SECURITY BADGE
-========================================== */
+/* ==========================
+   BADGE
+========================== */
 
 .container::before {
-content: "AES-256 • RSA • SHA-256";
+    content: "AES-256 • RSA • SHA-256";
 
+    position: absolute;
+    top: -14px;
+    left: 25px;
 
-position: absolute;
+    padding: 7px 12px;
 
-top: -14px;
-left: 25px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
 
-padding: 8px 14px;
+    color: #38bdf8;
 
-background: #111827;
-color: #38bdf8;
+    background: #0f172a;
 
-border: 1px solid rgba(56, 189, 248, 0.2);
-border-radius: 999px;
-
-font-size: 11px;
-font-weight: 700;
-letter-spacing: 1px;
-
-
+    border: 1px solid rgba(56,189,248,0.25);
+    border-radius: 999px;
 }
 
-/* ==========================================
-TITLE
-========================================== */
+/* ==========================
+   TITLE
+========================== */
 
 h1 {
-text-align: center;
+    text-align: center;
 
+    font-size: 2rem;
+    font-weight: 800;
 
-color: var(--text);
+    color: var(--text);
 
-font-size: 2rem;
-font-weight: 800;
-
-margin-bottom: 25px;
-
-letter-spacing: 0.5px;
-
-
+    margin-bottom: 22px;
 }
 
-/* ==========================================
-FORM CONTROLS
-========================================== */
+/* ==========================
+   INPUT FIELDS
+========================== */
 
 select,
 textarea,
 input {
-width: 100%;
+    width: 100%;
 
+    margin: 10px 0;
+    padding: 15px;
 
-margin: 10px 0;
-padding: 15px;
+    border-radius: 16px;
 
-border: 1px solid var(--border);
-border-radius: 16px;
+    border: 1px solid var(--border);
 
-background: rgba(255, 255, 255, 0.04);
+    background: rgba(255,255,255,0.04);
 
-color: var(--text);
-font-size: 15px;
+    color: var(--text);
 
-transition: 0.3s ease;
+    font-size: 15px;
 
+    outline: none;
 
+    transition: 0.25s ease;
 }
 
 textarea {
-resize: none;
+    resize: none;
+    min-height: 120px;
 }
 
 select:focus,
 textarea:focus,
 input:focus {
-outline: none;
+    border-color: #38bdf8;
 
-
-border-color: #38bdf8;
-
-box-shadow:
-    0 0 0 4px rgba(56, 189, 248, 0.15);
-
-
+    box-shadow: 0 0 0 4px rgba(56,189,248,0.15);
 }
 
-textarea::placeholder,
-input::placeholder {
-color: var(--muted);
+/* ==========================
+   DROPDOWN FIX (MOBILE)
+========================== */
+
+#action {
+    -webkit-appearance: none;
+    appearance: none;
 }
 
-/* ==========================================
-BUTTONS
-========================================== */
+/* ==========================
+   BUTTON
+========================== */
 
 button {
-width: 100%;
-
-
-margin-top: 10px;
-padding: 15px;
-
-border: none;
-border-radius: 16px;
-
-cursor: pointer;
-
-color: white;
-
-font-size: 15px;
-font-weight: 700;
-
-background:
-    linear-gradient(
-        135deg,
-        #2563eb,
-        #06b6d4
-    );
-
-transition: 0.3s ease;
-
-
-}
-
-button:hover {
-transform: translateY(-3px);
-
-
-box-shadow:
-    0 15px 30px rgba(37, 99, 235, 0.35);
-
-
-}
-
-button:active {
-transform: scale(0.98);
-}
-
-/* ==========================================
-RESULT SECTION
-========================================== */
-
-.result {
-margin-top: 25px;
-padding: 18px;
-
-
-display: flex;
-justify-content: space-between;
-align-items: center;
-gap: 12px;
-
-border: 1px solid var(--border);
-border-radius: 18px;
-
-background: rgba(255, 255, 255, 0.04);
-
-
-}
-
-#result {
-flex: 1;
-
-
-color: var(--text);
-
-line-height: 1.7;
-word-break: break-word;
-
-
-}
-
-/* ==========================================
-COPY BUTTON
-========================================== */
-
-#copyBtn {
-width: auto;
-min-width: 120px;
-
-
-background:
-    linear-gradient(
-        135deg,
-        #16a34a,
-        #22c55e
-    );
-
-
-}
-
-#copyBtn:hover {
-box-shadow:
-0 12px 25px rgba(34, 197, 94, 0.35);
-}
-
-/* ==========================================
-SCROLLBAR
-========================================== */
-
-::-webkit-scrollbar {
-width: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-background: #334155;
-border-radius: 50px;
-}
-
-/* ==========================================
-RESPONSIVE
-========================================== */
-
-@media (max-width: 600px) {
-.container {
-padding: 25px;
-}
-
-h1 {
-    font-size: 1.6rem;
-}
-
-.result {
-    flex-direction: column;
-}
-
-#copyBtn {
     width: 100%;
-}
 
-}
-#action {
-    width: 100%;
+    margin-top: 10px;
     padding: 15px;
 
-    background: rgba(168, 152, 238, 0.05);
-    color: #f8fafc;
-
-    border: 1px solid rgba(255,255,255,0.1);
+    border: none;
     border-radius: 16px;
 
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 700;
+
+    color: white;
 
     cursor: pointer;
+
+    background: linear-gradient(135deg, #2563eb, #06b6d4);
+
+    transition: 0.3s ease;
 }
 
-#action option {
-    background: #0f172a;
-    color: #f8fafc;
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(37,99,235,0.35);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* ==========================
+   RESULT BOX
+========================== */
+
+.result {
+    margin-top: 22px;
+
+    padding: 18px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,0.04);
+
+    border: 1px solid var(--border);
+}
+
+#result {
+    flex: 1;
+
+    color: var(--text);
+
+    line-height: 1.6;
+
+    word-break: break-word;
+}
+
+/* ==========================
+   COPY BUTTON
+========================== */
+
+#copyBtn {
+    width: auto;
+    min-width: 120px;
+
+    background: linear-gradient(135deg, #16a34a, #22c55e);
+}
+
+#copyBtn:hover {
+    box-shadow: 0 12px 25px rgba(34,197,94,0.35);
+}
+
+/* ==========================
+   SCROLLBAR
+========================== */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 50px;
+}
+
+/* ==========================
+   MOBILE FIX
+========================== */
+
+@media (max-width: 600px) {
+
+    body {
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    .container {
+        margin-top: 40px;
+        padding: 22px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .result {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #copyBtn {
+        width: 100%;
+    }
+
+    select,
+    input,
+    textarea {
+        font-size: 16px;
+    }
 }
